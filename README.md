@@ -35,11 +35,12 @@ This platform is proposed in our paper *Towards a General-Purpose Foundation Mod
 
 
 ## 1. How to install
+### 1.1 Conda Enviroment
 We highly recommend that you use our conda environment. If your GPU uses the latest Blackwell architecture, lower versions of PyTorch are not supported. We suggest using CUDA 12.8 and PyTorch version 2.7.0 or above.
 ```bash
 # create virtual environment
 cd NeuroSTORM
-conda create -n neurostorm python=3.10
+conda create -n neurostorm python=3.11
 conda activate neurostorm
 
 # upgrade gcc compiler (optional)
@@ -52,17 +53,31 @@ conda install ninja
 source ./set_env.sh
 
 # install dependencies
-pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
-pip install tensorboard tensorboardX tqdm ipdb nvitop monai==1.3.0 
-pip install pytorch-lightning==1.9.4 neptune nibabel nilearn numpy==1.22.4
+pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cu128
+pip install tensorboard tensorboardX tqdm ipdb nvitop monai
+pip install pytorch-lightning==1.9.4 neptune nibabel nilearn numpy
 
-# install mamba_ssm, it may takes a few minutes to download the .whl files
-pip install https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.5.0.post8/causal_conv1d-1.5.0.post8+cu11torch2.1cxx11abiTRUE-cp310-cp310-linux_x86_64.whl
-pip install https://github.com/state-spaces/mamba/releases/download/v2.2.2/mamba_ssm-2.2.2+cu118torch2.1cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
- ```
+# install mamba_ssm
+export CC=gcc-11
+export CXX=g++-11
+export CUDA_HOME=/usr/local/cuda-12.8
 
-If you encounter issues when installing PyTorch and mamba_ssm, please try upgrading the GCC compiler and setting environment variables to ensure the correct versions of the GCC compiler and CUDA are being used.
+git clone https://github.com/Dao-AILab/causal-conv1d.git
+cd causal-conv1d
+TORCH_CUDA_ARCH_LIST="12.0" pip install --upgrade --no-cache-dir --no-build-isolation -e .
+cd mamba
+git clone https://github.com/state-spaces/mamba.git
+TORCH_CUDA_ARCH_LIST="12.0" pip install --upgrade --no-cache-dir --no-build-isolation -e .
+```
 
+
+### 1.2 Docker
+We have already prepared a Dockerfile in the project, so you can quickly set up the environment.
+
+```bash
+docker build -t neurostrom_cu128:latest .
+docker run --gpus all -it --rm -v $(pwd):/workspace -v /path/to/your/data:/workspace/data --shm-size=8g --name neuro_job neurostrom_cu128:latest
+```
 
 ## 2. Project Structure
 Our directory structure looks like this:
