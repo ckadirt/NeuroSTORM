@@ -5,7 +5,6 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DEMO_PY="${ROOT_DIR}/demo.py"
 
 # TODO: update these paths for your environment
 DATA_ROOT="/path/to/HCP1200"            # e.g., /data/hcp1200-preprocessed
@@ -14,7 +13,7 @@ CKPT_AGE="/path/to/age.ckpt"            # checkpoint trained for age
 CKPT_PHENO="/path/to/phenotype.ckpt"    # checkpoint trained for phenotype
 
 # Gender classification
-python "${DEMO_PY}" \
+uv run neurostorm-demo \
   --ckpt_path "${CKPT_GENDER}" \
   --task gender \
   --image_path "${DATA_ROOT}" \
@@ -22,7 +21,7 @@ python "${DEMO_PY}" \
   --precision 32
 
 # Age regression
-python "${DEMO_PY}" \
+uv run neurostorm-demo \
   --ckpt_path "${CKPT_AGE}" \
   --task age \
   --image_path "${DATA_ROOT}" \
@@ -31,7 +30,7 @@ python "${DEMO_PY}" \
   --label_scaling_method standardization
 
 # Phenotype prediction
-python "${DEMO_PY}" \
+uv run neurostorm-demo \
   --ckpt_path "${CKPT_PHENO}" \
   --task phenotype \
   --phenotype_name some_regression_column \

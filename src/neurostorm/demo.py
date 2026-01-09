@@ -4,9 +4,9 @@ import sys
 import torch
 import pytorch_lightning as pl
 
-from utils.data_module import fMRIDataModule
-from models.lightning_model import LightningModel
-from utils.parser import str2bool
+from neurostorm.utils.data_module import fMRIDataModule
+from neurostorm.models.lightning_model import LightningModel
+from neurostorm.utils.parser import str2bool
 
 
 SUPPORTED_TASKS = ("age", "gender", "phenotype")

@@ -21,10 +21,10 @@ import nibabel as nb
 
 
 from .load_model import load_model
-from utils.metrics import Metrics
-from utils.parser import str2bool
-from utils.losses import NTXentLoss, global_local_temporal_contrastive
-from utils.lr_scheduler import WarmupCosineSchedule, CosineAnnealingWarmUpRestarts
+from neurostorm.utils.metrics import Metrics
+from neurostorm.utils.parser import str2bool
+from neurostorm.utils.losses import NTXentLoss, global_local_temporal_contrastive
+from neurostorm.utils.lr_scheduler import WarmupCosineSchedule, CosineAnnealingWarmUpRestarts
 
 from einops import rearrange
 from sklearn.preprocessing import LabelEncoder, StandardScaler, MinMaxScaler, KBinsDiscretizer

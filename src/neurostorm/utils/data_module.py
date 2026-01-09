@@ -3,7 +3,7 @@ import pytorch_lightning as pl
 import numpy as np
 import pandas as pd
 from torch.utils.data import DataLoader, Subset
-from datasets.fmri_datasets import HCP1200, ABCD, UKB, Cobre, ADHD200, UCLA, HCPEP, HCPTASK, GOD, MOVIE, TransDiag
+from neurostorm.datasets.fmri_datasets import HCP1200, ABCD, UKB, Cobre, ADHD200, UCLA, HCPEP, HCPTASK, GOD, MOVIE, TransDiag
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from .parser import str2bool
 

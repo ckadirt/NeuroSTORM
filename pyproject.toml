@@ -1,0 +1,33 @@
+[project]
+name = "neurostorm"
+version = "0.1.0"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+
+    # These come from git (sources below)
+    "mamba-ssm", # this one may take a few minutes aaaaa
+    "pytorch-lightning==1.9.4",
+
+    "ipdb",
+    "monai",
+    "neptune",
+    "nibabel",
+    "nilearn",
+    "numpy",
+    "nvitop",
+    "tensorboard",
+    "tensorboardx",
+    "torch",
+    "torchaudio",
+    "torchvision",
+    "tqdm",
+
+]
+
+[tool.uv]
+package = true
+
+[project.scripts]
+neurostorm-train = "neurostorm.main:cli_main"
+neurostorm-demo = "neurostorm.demo:main"
+

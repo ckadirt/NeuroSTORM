@@ -9,9 +9,9 @@ from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 from pytorch_lightning.loggers.tensorboard import TensorBoardLogger
 
 import neptune
-from utils.data_module import fMRIDataModule
-from utils.parser import str2bool
-from models.lightning_model import LightningModel
+from neurostorm.utils.data_module import fMRIDataModule
+from neurostorm.utils.parser import str2bool
+from neurostorm.models.lightning_model import LightningModel
 from huggingface_hub import hf_hub_download
 
 

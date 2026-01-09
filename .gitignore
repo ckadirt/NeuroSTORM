@@ -19,3 +19,15 @@ scripts/dataset_download/hcp_t1t2
 datasets/save_frames.py
 datasets/hcp_task_2448996.csv
 .vscode/settings.json
+
+__pycache__/
+
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+*.egg-info/
+**/*.egg-info/
